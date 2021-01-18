@@ -1,8 +1,8 @@
 ---
-title: "Time Series Econometrics, Fall 2019"
+title: "Time Series Econometrics, Spring 2021"
 subtitle: "Lecture 0. Introduction to the course"
 author: "Vladimir Pyrlik"
-date: "September 6, 2019"
+date: "January 22, 2021"
 output:
   xaringan::moon_reader:
     mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
@@ -31,7 +31,7 @@ The language of instruction for this course is **ENLISH**
 
 --
 
-##Who wants us to switch to **Russian** in the classroom?
+##Two of the practice session groups will work in Russian
 .rmk[All of the course materials are in English anyhow.]
 
 ---
@@ -80,14 +80,7 @@ class: center, animated, fadeIn
 </br></br></br>
 .bb[?] Why would we want to study **Time Series**?
 
-.rmk[let's meet **Mentimeter**]
-
----
-class: center, middle, animated, fadeInUp
-
-### Go to **www.menti.com** and use the code **87 91 46**
-
-<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/embed/3fe8e8260620c690105a799b7f3b50a2/9fa39db69f16' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
+.rmk[let's meet **Wooclap**]
 
 ---
 class: animated, fadeIn
@@ -181,6 +174,14 @@ knitr::include_graphics("stuff/ts05.png")
 
 .center_img[
 ```{r echo = FALSE}
+knitr::include_graphics("stuff/ts06.png")
+```
+]
+
+--
+
+.center_img[
+```{r echo = FALSE}
 knitr::include_graphics("stuff/ts07.png")
 ```
 ]
@@ -189,23 +190,7 @@ knitr::include_graphics("stuff/ts07.png")
 
 .center_img[
 ```{r echo = FALSE}
-knitr::include_graphics("stuff/ts08.png")
-```
-]
-
---
-
-.center_img[
-```{r echo = FALSE}
 knitr::include_graphics("stuff/ts09.png")
-```
-]
-
---
-
-.center_img[
-```{r echo = FALSE}
-knitr::include_graphics("stuff/ts10.png")
 ```
 ]
 

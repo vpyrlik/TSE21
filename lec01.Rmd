@@ -1,8 +1,8 @@
 ---
-title: "Time Series Econometrics, Fall 2019"
+title: "Time Series Econometrics, Spring 2021"
 subtitle: "Lecture 1. Stationarity"
 author: "Vladimir Pyrlik"
-date: "September 6, 2019"
+date: "January 29, 2021"
 output:
   xaringan::moon_reader:
     mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
