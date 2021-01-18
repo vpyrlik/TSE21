@@ -43,17 +43,13 @@ class: animated, fadeIn
 .gb[*e.g.*] Many theoretical results from *"traditional"* probability, statistics & econometrics require *i.i.d.* samples
 
 ---
-class: center, tps, animated, fadeIn
-
-##Think - Pair - Share </br></br>
-
---
+class: center, hands, animated, fadeIn
 
 .bb[?] 
 
-### Name at least one *result, theorem, method, property* etc.
-### from either *probability, statistics or econometrics*
-### that relies on *i.i.d.*
+## Name at least one **result** *(theorem, method, property, etc.)*
+## from either *probability, statistics or econometrics*
+## that **relies on i.i.d.**
 
 ---
 class: animated, fadeIn
@@ -95,7 +91,7 @@ class: center, animated, fadeIn
 
 --
 
-![](stuff/ts09.png)
+![](stuff/ts09-2.png)
 
 --
 
