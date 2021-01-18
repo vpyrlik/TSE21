@@ -174,14 +174,6 @@ knitr::include_graphics("stuff/ts05.png")
 
 .center_img[
 ```{r echo = FALSE}
-knitr::include_graphics("stuff/ts06.png")
-```
-]
-
---
-
-.center_img[
-```{r echo = FALSE}
 knitr::include_graphics("stuff/ts07.png")
 ```
 ]
@@ -245,20 +237,6 @@ computational capacity is really binding]
 ---
 class: section, animated, fadeIn
 
-#Intro to the Course
-
-###wrapping up this lecture
-
----
-class: center, middle, animated, fadeInUp
-
-### Go to **www.menti.com** and use the code **57 52 12**
-
-<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/embed/f037b776b331b6c1a2982650b146936e/0b37e39024c8' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
-
----
-class: section, animated, fadeIn
-
 ### more on the course organization
 
 #Structure & Grading
@@ -278,7 +256,7 @@ class: animated, fadeIn
 
 --
 
-- *no graded activities*
+- **graded quizzes** based on lectures material
 
 ---
 class: animated, fadeIn
@@ -287,15 +265,14 @@ class: animated, fadeIn
 
 ##Practice Sessions
 
-- problems solving
+- discussing the quizzzes
 
-- empirical exerciss
+- solving problems
+
+- empirical exercises
 
 - Q&As
 
---
-
-- **graded quizzes** based on lectures material
 
 ---
 class: animated, fadeIn
@@ -304,17 +281,17 @@ class: animated, fadeIn
 
 ##Graded Quizzes
 
-.pull-left[- in the beginning of **every practice session**
+.pull-left[- in the beginning of **every lecture (starting the next week)**
 
-- key points & examples **from the lectures**
+- key points & examples **from the previous lectures or PSs**
 
-- using **menti.com**]
+- using **Wooclap**]
 
 --
 
-.pull-right[ - you must be **present in the classroom**
+.pull-right[ - you must be **present in the lecture Zoom meeting**
 
-- **use your real name** like *17x Surname Name*
+- **use your real name**
 
 - **an individual devise connected to the internet is required**]
 
@@ -325,7 +302,7 @@ class: animated, fadeIn
 
 ##Homework Assignment
 
-- the assignment will be distributed by the third lecture, 20/09
+- the assignment will be distributed by the third lecture
 
 - the deadline is 3 days before the exam, exact date TBA
 
@@ -346,11 +323,11 @@ class: animated, fadeIn
 
 ###Group composition
 
-- team leader **+** 4-7 members
+- team leader **+** 5-9 members
 
 --
 
-- teams must be assembled by 23/09
+- teams must be assembled by 31/01
 
 --
 
@@ -377,32 +354,26 @@ class: animated, fadeIn
 
 - 100% individual
 
-- written
+- online
 
-- **closed book**
+- in Wooclap
 
 ---
 class: animated, fadeIn
 
 #Grading
 </br></br>
-$$G_{RESULTING} = \lceil 0.67\times G_{EXAM} + 0.33\times G_{ACCUMULATED}\rceil$$
+$$G_{RESULTING} = \lceil 0.4\times G_{EX} + 0.4\times G_{HW} + 0.2\times G_{Q} \rceil$$
 </br>
 --
 
-$$G_{ACCUMULATED}=\lceil 0.8\times G_{HWA}+0.2\times G_{QUIZZES}\rceil$$
-</br>
---
-
-$$G_{QUIZZES}=\lceil 0.2\times \Sigma_\color{blue}{q=2}^6 G_q\rceil$$
-
-
+$$G_{Q}=\lceil 0.2\times \Sigma_\color{blue}{q=2}^6 G_q\rceil$$
 ---
 class: center, animated, zoomIn
 
 #Selected course materials on *Padlet*
 
-.url[http://padlet.com/vpyrlik/r80aptugjiyv]
+.url[https://padlet.com/vpyrlik/tse21]
 
 ![](stuff/qr-code.png)
 
