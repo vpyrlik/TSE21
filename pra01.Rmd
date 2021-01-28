@@ -1,0 +1,141 @@
+---
+title: "Time Series Econometrics, Spring 2021"
+subtitle: "Practice Session 1"
+author: "Vladimir Pyrlik"
+date: "January 30, 2021"
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    lib_dir: libs
+    css: [libs/main.css, libs/fonts.css, libs/animate.css]
+    chakra: libs/remark-latest.min.js
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      highlightLines: true
+      ratio: "8:5"
+---
+class: animated, fadeIn
+
+##Outline for today
+
+1. Quiz 1 results analysis
+
+--
+
+2. Stationarity: brief recall
+
+3. Important real-life examples
+
+--
+
+4. Wrap-up
+
+---
+class: section, animated, flipInY
+
+#Quiz 1 Results Analysis
+
+### the results of the quiz are available on the **Padlet**
+
+---
+class: section, animated, fadeIn
+
+#Stationarity
+
+### several questions
+
+---
+class: center, animated, fadeIn
+
+#Questions from the lecture</br></br>
+
+.bb[?] Does weak stationarity imply strict stationarity?</br></br>*Construct a counterexample.*</br></br></br>
+
+--
+
+.bb[?] What are some common types of non-stationarity</br>in economic data?</br></br>*Provide real-life examples of each.*
+
+---
+class: animated, fadeIn
+
+#Problem 1
+
+### For each of the following examples give and explain answers to the following</br></br>
+
+.bb[?] Is it likely that the TS is stationary or not?</br></br>
+
+.bb[?] If not, what types of non-stationarity are present?</br></br>
+
+.bb[?] What kinds of testing do we need to conclude that?</br></br>
+
+.bb[?] Is it likely that the propoerty persists if we consider another source of data or time period?
+
+---
+class: center, animated, fadeIn
+
+###.gb[Example 1]
+
+![](stuff/p1ex1.png)
+
+---
+class: center, animated, fadeIn
+
+###.gb[Example 2]
+
+![](stuff/p1ex2.png)
+
+---
+class: center, animated, fadeIn
+
+###.gb[Example 3]
+
+![](stuff/p1ex3.png)
+
+---
+class: center, animated, fadeIn
+
+###.gb[Example 4]
+
+![](stuff/p1ex4.png)
+---
+class: center, animated, fadeIn
+
+###.gb[Example 5]
+
+![](stuff/p1ex5.png)
+
+---
+class: center, animated, fadeIn
+
+###.gb[Example 6]
+
+![](stuff/p1ex6.png)
+
+---
+class: center, animated, fadeIn
+
+###.gb[Example 7]
+
+![](stuff/p1ex7.png)
+
+---
+class: center, animated, fadeIn
+
+###.gb[Example 8]
+
+![](stuff/p1ex8.png)
+
+---
+class: center, middle, animated, zoomIn
+
+### As an exit ticket from the class, please,
+## ask a question or leave a comment about this class
+
+[wooclap.com/TSEXIT](https://www.wooclap.com/TSEXIT)
+
+![](stuff/tsexitqr.png)
+
+
+
+## See you next week!
