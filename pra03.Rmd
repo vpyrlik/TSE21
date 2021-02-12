@@ -1,0 +1,71 @@
+---
+title: "Time Series Econometrics, Spring 2021"
+subtitle: "Practice Session 3"
+author: "Vladimir Pyrlik"
+date: "February 13, 2019"
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    lib_dir: libs
+    css: [libs/main.css, libs/fonts.css, libs/animate.css]
+    chakra: libs/remark-latest.min.js
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      highlightLines: true
+      ratio: "8:5"
+---
+class: animated, fadeIn
+##Outline for today
+1. Lecture 2 Wrap-up (Stationarity: formal testing)
+2. Stationary transformations
+3. Lecture 3 Wrap-up (more about transformations)
+
+
+---
+class: section, animated, fadeIn
+
+###Differences & other
+
+#Stationary Transformations
+
+---
+class: animated, fadeIn
+
+##Differencing Transformations
+
+.bb[?] Define the first difference of some TS $\{X_t\}_{t=-\infty}^{+\infty}$
+
+--
+
+.bb[?] What do we mean by "*differences preserve units*"?
+
+--
+
+.bb[?] Give an example when differences are not meaningful.
+.right[.rmk[recall that "*preserve units*" property again]]
+
+--
+
+.bb[?] Say, some TS differences are perfectly stationary. Then what's the initial TS like? .rmk[Assume the diffs are positive on average.]
+
+--
+
+.bb[?] When the diffs might not be enough to "kill" non-stationarity?
+.right[.rmk[Give a general answer and a few real-life examples.]]
+
+---
+class: section, animated, rotateIn
+
+##.RUred[You have to work on that MOOC!]
+
+###See the post on Padlet for details!</br></br>
+
+###.RUred[Also keep up with the work on the HWA!]
+
+---
+class: center, middle, animated, rubberBand
+
+##Thank you!
+
+###See you next time
