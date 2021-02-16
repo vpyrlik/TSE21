@@ -1,0 +1,170 @@
+---
+title: "Time Series Econometrics, Fall 2019"
+subtitle: "Practice Session 5"
+author: "Vladimir Pyrlik"
+date: "October 7-11, 2019"
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    lib_dir: libs
+    css: [libs/main.css, libs/fonts.css, libs/animate.css]
+    chakra: libs/remark-latest.min.js
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      highlightLines: true
+      ratio: "8:5"
+
+---
+class: section, animated, flipInY
+
+##Quiz 4.5
+
+#ARMA modeling & prediction
+
+---
+class: center, animated, bounceIn
+
+</br></br>
+
+#Quiz 4.5
+
+###time remaining
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 8, seconds = 00,
+                     left=0, right=0, padding='20px', margin='10%', font_size = '5em')
+```
+
+---
+class: section, animated, fadeIn
+
+###The Main Steps of
+#Modeling & Prediction of Univariate Data
+
+</br></br>
+
+##Quick Recall
+
+---
+class: animated, fadeIn
+
+#Main Steps of ULM for Prediction
+
+.bb[?] What are the main steps of **preliminary analysis** of data?
+.right[.rmk[.bb[?] What is *the outcome*?]]
+
+--
+
+</br>
+
+.bb[?] What are the main steps of **in-sample modeling**?
+.right[.rmk[.bb[?] What is *the outcome*?]]
+
+--
+
+</br>
+
+.bb[?] What are the main steps of **prediction**? .rmk[.bb[?] What is *the outcome*?]
+
+--
+
+</br>
+
+.bb[?] Which of the steps can be alternated & in what way?
+
+---
+class: section, animated, fadeIn
+
+###Using ULM for Prediction
+
+</br>
+
+#Forecast Evaluation
+##Alternative Schemes & Approaches
+
+---
+class: animated, fadeIn
+
+##Problem 1: alternative loss functions
+
+.bb[?] Recall what a *prediction loss function* is in general.
+
+--
+
+.bb[?] What are *quadratic loss function* & its main properties?
+
+--
+
+</br>
+
+Consider $L(e)=\bf{1}_{\{e\neq0\}}$.
+
+.bb[?] Is it a legit loss function? When can it be used?
+
+--
+
+</br>
+
+Consider $L(fe_t,X_{t-1})=\frac{|fe_t|}{X_{t-1}}$.
+
+.bb[?] Is it a loss function? Suggest a name.
+
+---
+class: animated, fadeIn
+
+##Problem 2: asymmetric loss functions
+
+.bb[?] Recall all the loss functions we used. Are they symmetric?
+
+--
+
+</br>
+
+.bb[?] When an asymmetric loss function can be preferred?
+.right[.rmk[Suggest a real-life prediciton task]]
+
+--
+
+</br>
+
+.bb[?] Suggest $L(e)$ that punishes **over**prediction more .right[.rmk[than **under**prediction]]
+
+
+---
+class: animated, fadeIn
+
+##Problem 3: dynamic **vs** static forecasts
+
+.bb[?] Static & dynamic forecasts: what's the difference?
+
+--
+
+</br>
+
+.bb[?] Can we use static forecasts in forecast evaluation? .right[.rmk[suggest a real-life prediction problem]]
+
+---
+class: animated, fadeIn
+
+##Problem 4: dealing with multiple predictors
+
+Often at the end of modeling stage we end up with *several* alternative models.
+
+Imagine, also *more than one* of them delivers appropriate forecasts. 
+
+</br>
+
+.bb[?] How's that possible?
+
+</br>
+
+.bb[?] How can we deal with this?
+
+
+---
+class: center, middle, animated, rubberBand
+
+##Thank you!
+
+###See you next time

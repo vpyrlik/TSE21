@@ -1,0 +1,194 @@
+---
+title: "Time Series Econometrics, Fall 2019"
+subtitle: "Practice Session 6"
+author: "Vladimir Pyrlik"
+date: "October 14-18, 2019"
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    lib_dir: libs
+    css: [libs/main.css, libs/fonts.css, libs/animate.css]
+    chakra: libs/remark-latest.min.js
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      highlightLines: true
+      ratio: "8:5"
+
+---
+class: section, animated, flipInY
+
+##Quiz 6
+
+</br></br>
+
+#Multivariate Linear Regression
+##either for RS or S&ETS data
+
+---
+class: center, animated, bounceIn
+
+</br></br>
+
+#Quiz 6
+
+###time remaining
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 8, seconds = 00,
+                     left=0, right=0, padding='20px', margin='10%', font_size = '5em')
+```
+
+---
+class: section, animated, fadeIn
+
+#Multivariate Linear Regression
+
+</br>
+
+###Constructing tests for RS or S&ETS cases
+
+---
+class: animated, fadeIn
+
+##Problem 1. MLR for RS (I)
+
+Consider the traditional regresison model with only two factors:
+
+$$y_i=\beta_o+\beta_1x_{i1}+\beta_2x_{i2}+\varepsilon_i,$$
+
+under the assumptions:
+
+.rb[A1] **Random Sampling**: .bb[?]
+
+.rb[A2] **Exogenous Error**: .bb[?]
+
+--
+
+.rb[A3] **Exact ID**: $\mathbb{E}(x_i'x_i)$ has full rank.
+.right[.rmk[.bb[?] What's the meaning of .rb[A3]?]]
+
+---
+class: animated, fadeIn
+
+##Problem 1. MLR for RS (II)
+
+For this regression model, answer the following questions:
+
+.bb[?] **Derive** the OLSEs of the regression coefficients.
+
+--
+
+.bb[?] **Derive** the difference $\hat\beta-\beta$ and show that the estimates are unbaised, consistent, and find their asymptotic distribution.
+.right[.rmk[.rb[!] point out where and which theorems and assumptions are required]]
+
+---
+class: animated, fadeIn
+
+##Problem 1. MLR for RS (II)
+
+Consider yet another assumption:
+
+.rb[A4] $\mathbb{E}(\varepsilon_i^2|x_i)=\sigma^2\in(0,\infty)\backslash\{\infty\}$.
+
+</br>
+
+.bb[?] Name the assumption. How does it relate to .rb[A1]?
+
+--
+
+.bb[?] Under .rb[A4], how does the $V_\beta$ change?
+
+.bb[?] What's a "good" estimate of $V_\beta$ then?
+
+--
+
+.bb[?] What should be the estimate for $V_\beta$ without .rb[A4]?
+
+---
+class: animated, fadeIn
+
+##Problem 1. MLR for RS (III)
+
+Disregard .rb[A4]. Say, you got $\hat V_\beta$, a consistent estimate of $V_\beta$.
+
+</br>
+
+.bb[?] Construct a test for $H_o=\beta_1=0\}$. Explain how it works.
+
+.bb[?] How's it gonna be different if $H_o=\{\beta_1=2\}$?
+
+--
+
+.bb[?] Construct a test for $H_o=\{\beta_1=\beta_2\}$.
+
+--
+
+.bb[?] Construct a test for $H_o=\{\beta_1=0,\;\beta_2=0\}$.
+
+--
+
+</br>
+
+.bb[?] Explain, why it is important that $\hat V_\beta$ is consistent for $V_\beta$.
+
+---
+class: animated, fadeIn
+
+##Problem 2. MLR for S&ETS (I)
+
+Instead of the model for RS from Problem 1, consider the same type of model with stationary and ergodic TS:
+
+$$y_t=\beta_o+\beta_1x_{t1}+\beta_2x_{t2}+\varepsilon_{t}.$$
+
+.bb[?] Change the assumptions appropriately.
+.right[.rmk[.bb[?]Explain why each particular assumption does change or doesn't change]]
+
+--
+
+.bb[?] How does the derivation of OLSEs change?
+
+.bb[?] How does their properties change?
+.right[.rmk[.bb[?]Point out which theorems and assumptions are reuqired.]]
+
+--
+
+.bb[?] How does the part with the tests change?
+
+---
+class: animated, fadeIn
+
+##Problem 2. MLR for S&ETS (II)
+
+.bb[?] Write down in detail the asymptotic variance of the OLSEs.
+
+--
+
+.bb[?] What's an appropriate way to estimate $V_\beta$?
+
+.bb[?] Say, $T=40$. Write down the NW-HAC estimator for $V_\beta$.
+
+---
+class: section, animated, fadeIn
+
+###The last thing I'll ask you to do **before the exam**
+
+</br>
+
+#Student Evaluations
+
+---
+class: center, animated, bounceIn
+
+##Please take a few minutes of your time</br>to evaluate the course and my work. Thank you!
+
+![](stuff/tse_qr.png)   ![](stuff/tse_se.jpg)
+
+.right[.tinyurl[https://tf.cerge-ei.cz/evaluation/?name=Pyrlik+Vladimir&semester=Fall+2019&course=Time+Series+Econometrics]]
+
+---
+class: hands, middle, animated, rubberBand
+
+#Thank you!
+
+##It was the last practice session!

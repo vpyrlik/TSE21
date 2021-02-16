@@ -1,0 +1,80 @@
+---
+title: "Time Series Econometrics, Fall 2019"
+subtitle: "Practice Session 4"
+author: "Vladimir Pyrlik"
+date: "February 20, 2019"
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    lib_dir: libs
+    css: [libs/main.css, libs/fonts.css, libs/animate.css]
+    chakra: libs/remark-latest.min.js
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      highlightLines: true
+      ratio: "8:5"
+---
+class: section, animated, fadeIn
+
+###more about
+
+#Properties of linear DGPs
+
+---
+class: animated, fadeIn
+
+##**Problem 1.** Properties of a linear DGP
+
+Consider TS process below and answer the questions.
+
+$$X_t=1.8+2X_{t-1}-X_{t-2}+\varepsilon_t,\;\varepsilon_t\sim WWN(\sigma).$$
+
+--
+
+.bb[?] Name the process.
+
+--
+
+.bb[?] Is the process stationary? 
+.right[.rmk[If it isn't, what type of non-stationarity is there?]]
+
+--
+
+.bb[?] If it isn't, kill non-stationarity and repeat.
+.right[.rmk[When it is stationary, also find its moments.]]
+
+
+---
+class: animated, fadeIn
+
+##**Problem 2.** Properties of another linear DGP
+
+Consider TS process below and answer the questions.
+
+$$X_t=1.6-0.5X_{t-1}+0.8X_{t-2}-0.3X_{t-3}+0.25\varepsilon_{t-1}+\varepsilon_t.$$
+
+--
+
+.bb[?] Is there something missing?
+
+--
+
+.bb[?] Name the process.
+
+--
+
+.bb[?] Is the process stationary? 
+.right[.rmk[If it isn't, what type of non-stationarity is there?]]
+
+--
+
+.bb[?] If it isn't, kill non-stationarity and repeat.
+.right[.rmk[When it is stationary, also find its moments.]]
+
+---
+class: center, middle, animated, rubberBand
+
+##Thank you!
+
+###See you next time

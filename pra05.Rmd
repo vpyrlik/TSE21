@@ -1,0 +1,97 @@
+---
+title: "Time Series Econometrics, Fall 2019"
+subtitle: "Practice Session 5"
+author: "Vladimir Pyrlik"
+date: "February 27, 2019"
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    lib_dir: libs
+    css: [libs/main.css, libs/fonts.css, libs/animate.css]
+    chakra: libs/remark-latest.min.js
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      highlightLines: true
+      ratio: "8:5"
+
+---
+class: center, animated, fadeIn
+
+#Working with data: quick recall
+###of what we've done so far
+
+</br>
+
+--
+
+##**Preliminary analysis of the data**
+
+###Essential & visual analysis,</br>reviewing the importance of the data,</br>posing relevant questions.
+
+###Stationarity testing & transforming the data.
+
+---
+class: section, animated, fadeIn
+
+###Working with data: the next step
+
+</br>
+
+#Univariate Linear Modeling:</br>Application to Data
+
+##Specification Choice, Estimation & In-sample Diagnostics
+
+---
+class: animated, fadeIn
+
+###ULM: Specification Choice, Estimation & In-sample Diagnostics
+
+</br>
+
+#What do we mean by ...
+
+.bb[?] ... ULM?
+
+.bb[?] ... specification choice?
+
+.bb[?] ... estimation?
+
+.bb[?] ... diagnostics?
+
+.bb[?] ... in-sample?
+
+---
+class: animated, fadeIn
+
+###Today
+
+#Empirical Example
+
+##ULM of Mombasa Auction Tea Prices Dynamics in 1960-2016
+
+--
+
+.bb[?] What is this place?
+
+--
+
+.bb[?] Why *tea prices*?
+
+--
+
+.bb[?] What can we expect / aim to find out from ULM?
+
+--
+
+</br>
+
+.gb[Now] *Proceed to the example code execution and results*
+
+
+---
+class: center, middle, animated, rubberBand
+
+##Thank you!
+
+###See you next time

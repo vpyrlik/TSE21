@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Time Series Econometrics, Spring 2021</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Vladimir Pyrlik" />
+    <meta name="date" content="2021-02-19" />
+    <link rel="stylesheet" href="libs/main.css" type="text/css" />
+    <link rel="stylesheet" href="libs/fonts.css" type="text/css" />
+    <link rel="stylesheet" href="libs/animate.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Time Series Econometrics, Spring 2021
+## Lecture 4. Linaer Univariate Modeling
+### Vladimir Pyrlik
+### February 19, 2021
+
+---
+
+class: section, animated, fadeIn
+
+###A truly very 
+
+#Quick Recall
+
+###of what we've done so far
+
+---
+class: animated, fadeIn
+
+###A truly very
+#Quick Recall
+
+- We've been working on stationarity a lot
+
+--
+
+- Why? We heard we need it for modeling&lt;/br&gt;&lt;/br&gt;
+
+--
+
+.center[
+
+###Now we're starting
+
+# Stationary Time Series Linear Univariate Modeling
+
+]
+
+---
+class: tps, animated, fadeIn
+#DGPs  vs  Models&lt;/br&gt;
+
+We're going to be talking a lot of **Data Generating Processes**&lt;/br&gt;and even more of **Models**&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
+
+.bb[?]
+
+###What is the difference between a **DGP** &amp; a **model**?
+
+---
+class: center, animated, fadeIn
+
+#DGPs vs Models&lt;/br&gt;&lt;/br&gt;
+
+###When we say **"This is the the TS's DGP"**, we literally mean&lt;/br&gt;this is **ALL** .cross[we can tell] **that can be known** about this TS
+
+--
+
+.right[.rmk[DGPs can only be analyzed "theoretically"]]&lt;/br&gt;&lt;/br&gt;
+
+--
+
+###A **model is a simplified description** of a .rmk[possibly unknown] DGP.
+
+--
+
+.right[.rmk[Models can be fit to the data and used to "test stuff"]]
+
+---
+class: section, animated, fadeIn
+
+###Some important pieces of
+
+#Linear Univariate TS DGPs
+
+---
+class: animated, fadeIn
+
+#Brief Outline
+
+.bb[?] Why do we need the DGPs?
+
+.rb[!] We are gonna use them as *construction blocks* for models&lt;/br&gt;&lt;/br&gt;
+
+--
+
+We're gonna see **several DGPs** and for each of them
+
+- tell **why** we need it
+
+- outline the important **properties** .rmk[(stationarity, moments...)]
+
+- point out important **special cases**
+
+- **compare** with the other ones
+
+---
+class: animated, fadeIn
+
+#White Noises
+
+##Strict white noise
+
+--
+
+.center[
+
+###Time Series `\(\{\varepsilon_t\}_{t=-\infty}^\infty\)` is called **strict white noise (SWN)** if
+
+]
+
+`$$\varepsilon_t\sim\text{i.i.d.},\;\text{with}\;\mathbb{E}\varepsilon_t=0,\;\text{and}\;\mathbb{E}\varepsilon_t^2=\sigma^2&lt;\infty.$$`
+
+&lt;/br&gt;
+
+--
+
+###"Even Stricter" white noise
+
+.gb[*e.g.*] Consider `\(\varepsilon_t\sim\text{i.i.d.}\mathcal{N}(0,\sigma)\)` *aka* **Normal SWN**
+
+---
+class: animated, fadeIn
+
+#White Noises
+
+##Weak white noise
+
+.center[
+
+###Time Series `\(\{\varepsilon_t\}_{t=-\infty}^\infty\)` is called **weak white noise**, `\(WWN(\sigma)\)` if
+
+]
+
+`$$\forall t \;\; \mathbb{E}\varepsilon_t=0,\;\mathbb{E}\varepsilon_t^2=\sigma^2&lt;\infty,\;\text{and}\;\forall j\neq0\;\mathbb{E}(\varepsilon_t\varepsilon_{t-j})=0.$$`
+
+--
+
+.bb[?] Does it remind you of something we saw before?
+
+--
+
+.bb[?] Can a TS be *SWN* and NOT a *WWN*?
+
+--
+
+.bb[?] What about the opposite? .rmk[Think of or look up a counterexample.]
+
+---
+class: animated, fadeIn
+
+#White Noises: summary
+
+.bb[?] **Why** do we need WN series?
+
+.rb[!] As **analogs of random error terms** in TS models
+
+&lt;/br&gt;
+
+--
+
+.rb[!] We prefer using WWNs rather than SWNs.
+
+--
+
+.bb[?] Why? .rb[!] Because it can be verified from data.
+
+&lt;/br&gt;
+
+--
+
+.rb[!] often SWN needs to be used anyway
+
+---
+class: animated, fadeIn
+
+#Moving Averages
+
+--
+
+.center[
+
+###Time Series `\(\{X_t\}_{t=-\infty}^\infty\)` is called&lt;/br&gt;**moving average of order *q***, `\(\:MA(q),q&lt;\infty\)` if
+
+]
+
+`$$X_t=\mu + \varepsilon_t + \theta_1\varepsilon_{t-1}+...+\theta_{q}\varepsilon_{t-q},\;\text{and}\;\varepsilon_t\sim WWN(\sigma).$$`
+
+--
+
+.bb[?] When is it stationary? .rmk[what kind of stationary?]
+
+--
+
+.bb[?] Find the first two moments of `\(X_t\)`, including `\(\text{cov}(X_t,X_{t-j})\)`.
+
+--
+
+###Somewhat a "special case": `\(\:MA(\infty)\)`
+
+.rb[!] Stationary, when `\(\sum_{j=1}^\infty|\theta_j|&lt;\infty\)`.
+
+---
+class: animated, fadeIn
+
+#Autoregressive Processes
+
+## AR(1) 
+
+.center[
+
+###Time Series `\(\{X_t\}_{t=-\infty}^\infty\)` is called **autoregressive of order *1***, `\(\:AR(1)\)` if
+
+]
+
+`$$X_t=\mu + \varepsilon_t + \phi_1X_{t-1},\;\text{and}\;\varepsilon_t\sim WWN(\sigma).$$`
+
+--
+
+.bb[?] When is it stationary? 
+
+--
+
+.bb[?] Find the first two moments of `\(X_t\)`, including `\(\text{cov}(X_t,X_{t-j})\)`.
+
+---
+class: animated, fadeIn
+
+#Autoregressive Processes
+
+##A special case: random walk
+
+.center[
+
+###Time Series `\(\{X_t\}_{t=-\infty}^\infty\)` is called **a random walk** if
+
+]
+
+`$$X_t=X_{t-1} + \varepsilon_t,\;\text{and}\;\varepsilon_t\sim WWN(\sigma).$$`
+
+--
+
+.cross[.bb[?] When is it stationary? ]
+
+.cross[
+
+.bb[?] Find the first two moments ...
+
+]
+
+--
+
+.rb[!] This is the simplest example of a **unit root** process
+
+--
+
+.rb[!] Now we can distinguish a **trend** from a **unit root**
+
+---
+class: animated, fadeIn
+
+#Autoregressive Processes
+
+## The general AR(p) 
+
+.center[
+
+###Time Series `\(\{X_t\}_{t=-\infty}^\infty\)` is called&lt;/br&gt;**autoregressive of order *p***, `\(\:AR(p),p&lt;\infty\)` if
+
+]
+
+`$$X_t=\mu + \varepsilon_t + \phi_1X_{t-1}+...+\phi_pX_{t-p},\;\text{and}\;\varepsilon_t\sim WWN(\sigma).$$`
+
+--
+
+.bb[?] .cross[When is it stationary?] .rmk[deal with this in the next slide]
+
+.bb[?] Given `\(X_t\)` is stationary, find its first two moments.
+
+---
+class: animated, fadeIn
+
+#Autoregressive Processes
+
+## AR(p) stationarity conditions
+
+--
+
+### The characteristic polynomial 
+
+.center[
+
+###Given `\(X_t\)` an AR(p) process, its **characteristic polynomial** is
+
+]
+
+`$$\phi(z)=1-\phi_1z-\phi_2z^2-...-\phi_pz^p.$$`
+
+--
+
+### Stationarity condition
+
+.center[
+
+###The process `\(X_t\)` is then stationary if&lt;/br&gt;the **roots** of `\(\phi(z)\)` lie **outside the unit circle**.
+
+]
+
+---
+class: animated, fadeIn
+
+##.gb[Example 1]
+
+Consider an AR(2) process 
+`$$X_t=1.25 + 0.85X_{t-1}-0.48X_{t-2}+\varepsilon_t.$$`
+
+--
+
+.bb[?] Is anything missing?
+
+--
+
+.bb[?] Write down `\(\phi(z)\)`, find its roots, and check if `\(X_t\)` is stationary.
+
+&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
+
+--
+
+.right[
+
+.rmk[
+
+check at home that the roots are indeed `\(z_{1,2}=0.89\pm1.14i\)`, `\(|z_{1,2}|\approx1.44\)`
+
+]
+
+]
+
+---
+class: animated, fadeIn
+
+##.gb[Example 2] *Why "unit root"?*
+
+Consider an AR(3) process 
+`$$X_t=1.25 + 0.85X_{t-1}-0.48X_{t-2}-0.32X_{t-3}+\varepsilon_t,\;\varepsilon_t\sim WWN(\sigma)$$`
+
+--
+
+The roots of `\(\phi(z)\)` are .rmk[(check at home)]
+
+- `\(z_{1,2}=0.66\pm0.81i\)`, `\(|z_{1,2}|\approx1.05\)`
+
+- `\(z_3=-2.83\)`. 
+
+--
+
+.bb[?] Is `\(X_t\)` stationary?
+
+--
+
+.bb[?] Is it that horrible that `\(z_{1,2}\)` is **close to unit circle**? .rb[!] Yes!
+
+---
+class: animated, fadeIn
+
+.center[
+
+##Compare two simulations&lt;/br&gt;&lt;/br&gt;
+
+]
+
+.pull-left[
+
+.center[.gb[Simulation 1]]
+
+![](stuff/ex2_x1.png)
+
+.center[**ADF P-value** is **0.06**]
+
+]
+
+.pull-right[
+
+.center[.gb[Simulation 2]]
+
+![](stuff/ex2_x2.png)
+
+.center[**ADF P-value** is **0.14**]
+
+]
+
+---
+class: animated, fadeIn
+
+#ARMAs
+
+.center[
+
+###Time Series `\(\{X_t\}_{t=-\infty}^\infty\)` is called&lt;/br&gt;**an autoregressive moving average of orders *p* and *q*, ARMA(p,q)** if
+
+]
+
+`$$X_t=\mu + \varepsilon_t + \sum_{i=1}^p\phi_iX_{t-i}+\sum_{j=1}^q\theta_{j}\varepsilon_{t-q},\;\text{and}\;\varepsilon_t\sim WWN(\sigma).$$`
+
+--
+
+.rb[!] The characteristic polynomial comes from the AR part.
+
+.rb[!] The stationarity is defined by AR part, too.
+
+--
+
+.bb[?] Find .rmk[(or look up)] the moments of a stationary ARMA.
+
+--
+
+.rb[!] ARMA is an important DGP &amp; **the most important ULM**
+
+---
+class: section, animated, rubberBand
+
+#Why do we need the ARMAs?
+
+---
+class: animated, fadeIn
+
+#Why do we need the ARMAs?
+
+##1. Wold's decomposition .rmk[aka] **linear representation theorem**
+
+.center[
+
+###Given `\(\{X_t\}_{t=-\infty}^\infty\)` a **weakly stationary process**, it can be represented as
+
+]
+
+`$$X_t=d_t + \epsilon_t + \sum_{j=1}^{\color{red}\infty}\psi_j\epsilon_{t-j},\;\text{where}$$`
+
+- `\(d_t\)` is a *"deterministic" component*
+
+- `\(\epsilon_t\sim WWN(\sigma_\epsilon)\)`, .rmk[tsc] *"Wold's innovations"*
+
+- `\(\sum_{j=1}^\infty|\psi_j|^2&lt;\infty\)`, and `\(\psi\)`s is *"causal"* &amp; *"recent"*
+
+---
+class: animated, fadeIn
+
+#Why do we need the ARMAs?
+
+##2. Box &amp; Jenkins **modeling** approach
+
+--
+
+.center[
+
+.rb[!] It is not an "exact algorithm" &amp; there're many versions
+
+]
+
+&lt;/br&gt;
+
+--
+
+.center[
+
+###The **general idea** is that
+
+###A sample TS that comes from a stationary process can be **modelled as ARMA(p,q)**&lt;/br&gt;so that **the order isn't "too high"** &amp; **the residuals "resemble" WWN**.
+
+]
+
+---
+class: animated, fadeIn
+
+#Why do we need the ARMAs?
+
+##2. Box &amp; Jenkins modeling approach: **a rough algorithm**
+
+0. Get data that are **tested as stationary** .rmk[.gb[*e.g.*] some transformed data]
+
+--
+
+1. Choose appropriate **maximum** orders *p* &amp; *q*
+.right[.rmk[there's no one good way; normally *p* &amp; *q* are up to 5-6]]
+
+--
+
+2. **Fit** ARMAs up to that order to the data .rmk[.gb[*e.g.*] use a version of *MLE*]
+
+--
+
+3. Test them for **residual autocorrelation** &amp; drop those that fail
+.right[.rmk[many tests can be used]]
+
+--
+
+4. Pick **the one** that fits the data **best**
+.right[.rmk[again, no unique criterion to show that]]
+
+---
+class: animated, fadeIn
+
+#Why do we need the ARMAs?
+
+##2. Box &amp; Jenkins modeling approach: **a take-home task**
+
+### As an example and a tutorial of the Box-Jenkins modeling approach application,&lt;/br&gt;see the classes from **edX Macroeconomic Forecasting MOOC**
+
+--
+
+.rb[NB] .RUred[You don't need to sign up for the paid certificate!]
+
+--
+
+###Enroll at .url[https://www.edx.org/course/macroeconometric-forecasting-2]
+
+--
+
+###Study **Module 3** (at least),&lt;/br&gt;pay attention to the **essential information** rather than *soft application*
+
+---
+class: center, animated, fadeIn
+
+#Take-home Wrap-up
+
+##Part I: Important Linear DGPs: summary
+
+![](stuff/hwtab.png)
+
+---
+class: center, animated, fadeIn
+
+#Take-home Wrap-up
+
+##Part II: Box &amp; Jenkins modeling approach: details 
+
+###Based on **Module 3 of the MOOC** suggest
+
+.left[
+
+- an approach towards ARMA order choice
+
+- testing tools for ARMA residuals
+
+- criteria to pick one model
+
+]
+
+&lt;/br&gt;
+
+--
+
+**.RUred[The results are required: Part I by tomorrow, Part II by 27/02]**
+
+
+---
+class: center, middle, animated, rubberBand
+
+#Thank you!
+
+### See you next time
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"highlightLines": true,
+"ratio": "8:5"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
