@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Time Series Econometrics, Spring 2021</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Vladimir Pyrlik" />
+    <meta name="date" content="2021-03-19" />
+    <link rel="stylesheet" href="libs/main.css" type="text/css" />
+    <link rel="stylesheet" href="libs/fonts.css" type="text/css" />
+    <link rel="stylesheet" href="libs/animate.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Time Series Econometrics, Spring 2021
+## Lecture 6. MLR for S&amp;ETS: an Empirical Example
+### Vladimir Pyrlik
+### March 19, 2021
+
+---
+
+class: animated, fadeIn
+
+#Quick recall
+
+- Multivariateness is as important in TS context as outside of it
+
+- MLR for S&amp;E TS works *almost* the same way as for RS
+
+- Properties of the coefficients estimates allow us to test stuff 
+
+- NW-HAC is used for concisitent estimation of `\(\hat V_\beta\)`
+
+---
+class: section, animated, fadeIn
+
+###An empirical example
+
+&lt;/br&gt;
+
+#Contribution of housing starts&lt;/br&gt;to short-run GDP growth: the case of Canada
+
+&lt;/br&gt;
+
+---
+class: animated, fadeIn
+
+# The setup
+
+##The question
+
+More houses are constructed in the country all the time.
+
+Do more started constructions effect the GDP in short term?
+
+--
+
+&lt;/br&gt;
+
+.bb[?] Why short-term?
+
+--
+
+.bb[?] Should we expect an effect? What kind of effect?
+
+---
+class: animated, fadeIn
+
+# The setup
+
+##The data
+
+- GDP growth (in log-diffs of current GDP)
+
+- Housing starts (first diffs, millions)
+
+- in Canada
+
+- in 1992 - 2011, quarterly, 80 observations.
+
+--
+
+&lt;/br&gt;
+
+.bb[?] Does the data seem to satisfy our assumptions?
+
+---
+class: animated, fadeIn
+
+# The setup
+
+##Modeling technique
+
+- Consider several specifications of how housing starts effect on GDP growth is distributed over time
+
+- *Evaluate the effect based on different `\(V_\beta\)` estiamtes*
+
+- Interpret the results
+
+---
+class: animated, fadeIn
+
+###Specification I
+#Static model
+
+`$$GDPgr_t=\beta_o+\beta_1HS_t+\varepsilon_t.$$`
+
+--
+
+.bb[?] Why *"static"*?
+
+--
+
+.bb[?] What our assumptions should be?
+
+--
+
+.right[.rmk[.bb[?] why don't we require WWN error or independence between the error and *HS*?]]
+
+--
+
+.bb[?] Are all of them reasonable in this setup?
+
+--
+
+.right[.rmk[*let's estimate it anyway*]]
+
+---
+class: animated, fadeIn
+
+###Static model: Estimates
+
+.center[###**non-robust &amp; non-HAC s.e.**]
+
+|control | coeff|s.e.|
+|:----------|--------:|---------
+|Constant | 0.0066| 0.0007\*\*\*
+|*HS* | 0.0109| 0.0593|
+
+--
+
+.right[.rmk[.bb[?]What's wrong here?]]
+
+--
+
+.center[###**NW-HAC s.e.**]
+
+|control | coeff|s.e.|
+|:----------|--------:|---------
+|Constant | 0.0066| 0.0014\*\*\*
+|*HS* | 0.0109| 0.0567
+
+--
+
+.right[.rmk[.bb[?]Now what's wrong?]]
+
+---
+class: animated, fadeIn
+
+###Specification II
+#Distributed Lag Model
+
+`$$GDPgr_t=\beta_o+\beta_1HS_{t-1}+...+\beta_4HS_{t-4}+\varepsilon_t.$$`
+
+--
+
+.bb[?] How should we estimate the model and `\(V_\beta\)`?
+
+--
+
+.bb[?] How should we test the significance of *HS* effect now?
+.right[.rmk[.bb[?]construct the actual test in this case]]
+
+---
+class: animated, fadeIn
+
+###DLM: Estimates
+
+**parameters estimates**
+
+|control | coeff   | s.e.     | NW-HAC s.e.
+|:-------|--------:|:---------|:-----------
+|Constant| 0.0065  | 0.0007\*\*\*   | 0.0012\*\*\*     
+|*HS(-1)*| -0.2977 | 0.1149\*\*\*   | 0.1687\*     
+|*HS(-2)*| -0.2599 | 0.0944\*\*\*   | 0.1383\*     
+|*HS(-3)*| -0.2206 | 0.0931\*\*   | 0.1357     
+|*HS(-4)*| -0.1749 | 0.1094   | 0.1664     
+
+--
+
+**testing the effect**: `\(H_o=\{\beta_1=...=\beta_4=0\}\)`
+
+|   | no HAC  | NW-HAC |
+|:-|-:|-:|
+|W-statistics|11.7630|15.5830|
+|P-value|0.0192|0.0036|
+
+--
+
+.right[.rmk[.bb[?] Why is there such a difference between the tests?]]
+
+---
+class: animated, fadeIn
+
+###Specification III
+#Autoregressive Distributed Lag Model
+
+`$$GDPgr_t=\beta_o+\sum_{j=1}^4\alpha_jGDPgr_{t-j}+\sum_{i=1}^8\beta_iHS_{t-i}+\varepsilon_t.$$`
+
+--
+
+.bb[?] How can we choose between DLM and AR-DLM?
+
+--
+
+.bb[?] Consider the cumulative effect of *HS*: `\(\sum_{i=1}^8\beta_i\)`.&lt;/br&gt;Construct a test for its significance.
+
+---
+class: animated, fadeIn
+
+###AR-DLM: Estimates
+
+**parameters estimates**
+
+|control | coeff   | s.e.     | NW-HAC s.e.
+|:-------|--------:|:---------|:-----------
+|...| ...  | ...   | ...
+|*HS(-1)*| -0.0341 | 0.1233   | 0.1131     
+|*HS(-2)*| 0.0703  | 0.1229   | 0.1028     
+|*HS(-3)*| -0.0533 | 0.1266   | 0.1067     
+|*HS(-4)*| 0.1498  | 0.1098   | 0.0877\*     
+|*HS(-5)*| 0.0136  | 0.1331   | 0.0985     
+|*HS(-6)*| 0.0054  | 0.1225   | 0.1288     
+|*HS(-7)*| 0.1282  | 0.1177   | 0.0575\*\*     
+|*HS(-8)*| -0.0590 | 0.1364   | 0.0625     
+
+---
+class: animated, fadeIn
+
+###AR-DLM: Estimates
+
+**testing the effect**: `\(H_o=\{\beta_1=...=\beta_8=0\}\)`
+
+|   | no HAC  | NW-HAC |
+|:-|-:|-:|
+|W-statistics|12.2490|14.3350|
+|P-value|0.1404|0.0734|
+
+--
+
+**testing the cumulative effect**: `\(H_o=\{\beta_1+...+\beta_8=0\}\)`
+
+|   | no HAC  | NW-HAC |
+|:-|-:|-:|
+|W-statistics|0.2161|0.2826|
+|P-value|0.6420|0.5949|
+
+--
+
+.bb[?] Given `\(\sum_{i=1}^8\hat\beta_i=0.221\)`, can we test the one-sided hypothesis?
+
+---
+class: hands, animated, flipInY
+
+###.left[the very last]
+
+#.left[Wrap-up]
+
+.left[In MLR for S&amp;ETS always use HAC :)]
+
+&lt;/br&gt;&lt;/br&gt;
+
+#.right[The course is over! Thank you!]
+#.right[##Good luck on the exam!]
+
+---
+class: center, animated, bounceIn
+
+#Student Evaluations
+
+###Please evaluate the course!
+
+![](stuff/tse_qr.png)   ![](stuff/tse_se.jpg)
+
+.right[.tinyurl[https://tf.cerge-ei.cz/evaluation/?name=Pyrlik+Vladimir&amp;semester=Fall+2019&amp;course=Time+Series+Econometrics]]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"highlightLines": true,
+"ratio": "8:5"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

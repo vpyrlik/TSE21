@@ -1,8 +1,8 @@
 ---
-title: "Time Series Econometrics, Fall 2019"
+title: "Time Series Econometrics, Spring 2021"
 subtitle: "Lecture 6. MLR for S&ETS: an Empirical Example"
 author: "Vladimir Pyrlik"
-date: "October 18, 2019"
+date: "March 19, 2021"
 output:
   xaringan::moon_reader:
     mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
