@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Time Series Econometrics, Spring 2021</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Vladimir Pyrlik" />
+    <link rel="stylesheet" href="libs/main.css" type="text/css" />
+    <link rel="stylesheet" href="libs/fonts.css" type="text/css" />
+    <link rel="stylesheet" href="libs/animate.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Time Series Econometrics, Spring 2021
+## Lecture 5. Multivariate Linear Regression for</br>Stationary &amp; Ergodic Time Series
+### Vladimir Pyrlik
+### Marrch 12, 2021
+
+---
+
+class: hands, animated, fadeIn
+
+&lt;/br&gt;&lt;/br&gt;
+
+##Who's excited that we're done with **univariateness**?
+
+&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
+
+--
+
+###And we don't have a recall of the previous classes today.
+
+--
+
+##Instead we'll recall some stuff from **Econometrics I**
+
+---
+class: tps, animated, zoomIn
+
+#Multivariate Linear Regression
+
+##Take a minute to think&lt;/br&gt;&amp; discuss with 1-2 people around you
+
+#Why do we need .RUred[Multivariateness]?
+
+###whether in the context of TS or not
+
+---
+class: section, animated, fadeIn
+
+###A recap from Econometrics I
+
+&lt;/br&gt;
+
+#Multivariate Linear Regression 
+##for .RUred[random samples]
+
+---
+class: animated, fadeIn
+
+#MLR for RS: notation
+
+.center[
+
+###The main expression for a MLR **in by-observation form** is
+
+]
+
+`$$y_i = \beta_o + \beta_1 x_{1i} + ... \beta_k x_{ki} + \varepsilon_i.$$`
+
+--
+
+- `\(i\)` is the **observations index**,
+
+--
+
+- `\(y_i\)` is the **dependent variable** .rmk[*aka* left-hand side variable]
+
+--
+
+- `\(x_i\)`s are `\(k\)` **explanatory variables**, `\(\{x_{ij}\}_{j=1}^k\)`&lt;/br&gt;.rmk[*aka* RHS variables *or* regressors *or* covariates *or* controls]
+
+--
+
+- `\(\beta\)`s are `\(k+1\)` **regression coefficients** .rmk[*aka* parameters]
+
+--
+
+- `\(\varepsilon_i\)` is the .cross[*residual*] **error term**  
+
+---
+class: animated, fadeIn
+
+#MLR for RS: notation
+
+.center[
+
+###The main expression for a MLR **in by-observation form** is
+
+]
+
+`$$y_i = \beta_o + \beta_1 x_{1i} + ... \beta_k x_{ki} + \varepsilon_i = \color{blue}{x_i\beta+\varepsilon_i},$$`
+.center[
+
+###or **given data sample** `\(i=1,...N\)` **in matrix form**:
+
+]
+
+`$$Y=X\beta+\varepsilon.$$`
+
+--
+
+- `\(Y\)` is the `\(N\times1\)` vector of `\(y_i\)`s, &amp; `\(\varepsilon\)` is `\(N\times1\)` vector of `\(\varepsilon_i\)`s.
+
+--
+
+- `\(X\)` is `\(N\times(\color{red}{1+}k)\)` matrix with **rows** `\(x_i=(\color{red}{x_{io}=1},x_{i1},...x_{ik})\)`
+
+--
+
+- `\(\beta\)` is `\((\color{red}{1+}k)\times1\)` vector `\(\beta=(\color{red}{\beta_o},\beta_1,...,\beta_k)'\)`
+
+---
+class: center
+
+###MLR Matrix Form
+
+.animated.zoomIn[
+
+![](stuff/MLR_matrixform.png)
+
+]
+
+---
+class: animated, fadeIn
+
+#MLR for RS: .RUred[assumptions]
+
+###.center[The "model"]
+
+`$$y_i=x_i\beta+\varepsilon_i$$`
+
+###.center[is **NOT a model, unless** we have **.RUred[assumptions]**:]
+
+--
+
+&lt;/br&gt;
+
+.rb[rsA1] **Random sample**: `\(\{y_i,x_i,\varepsilon_i\}_{i=1}^{N}\)` are *i.i.d.*
+
+--
+
+&lt;/br&gt;
+
+.rb[rsA2] **Exogenous error**: `\(\mathbb{E}[\varepsilon_i|x_i]=0\)`
+
+---
+class: center, animated, fadeIn
+
+#.left[MLR for RS: OLS estimates]
+
+###The actual coefficients `\(\beta\)` are unknow,
+###hence, we use data `\(\{y_i,x_i\}_{i=1}^N\)` to estimate them.
+
+--
+
+&lt;/br&gt;
+
+##OLS estimation
+
+`\(\hat\beta^{OLS}=\arg\min_{b}\sum_{i=1}^N(\underbrace{y_i-x_ib}_{\equiv e_i(b)})^2=(X'X)^{-1}X'Y\)`
+
+.right[.rmk[**HW**: derive or look it up]]
+
+---
+class: animated, fadeIn
+
+#MLR for RS: .RUred[OLSE properties (I)]
+
+.center[
+
+##How do the estimates `\(\hat\beta^{OLS}\)` realte to the actual `\(\beta\)`s?
+
+]
+
+--
+
+.bb[?] Derive the difference `\(\hat\beta^{OLS}-\beta\)`
+
+.bb[?] How can we describe it?
+
+--
+
+.bb[?] Find the expectation of the difference.
+
+--
+
+.bb[?] What'd happen with the difference as `\(N\to\infty\)`?
+
+--
+
+.bb[?] "Slow down" that convergence &amp; get a distribution in the limit.
+
+--
+
+.bb[?] How did we use the assumptions .rb[rsA1] &amp; .rb[rsA2]?
+
+---
+class: animated, fadeIn
+
+#MLR for RS: .RUred[OLSE properties (II)]
+
+Thus, the difference between the actual `\(\beta\)`s &amp; their OLSE is
+
+`$$\sqrt{N}(\hat\beta^{OLS}-\beta)=\bigg(N^{-1}\sum_{i=1}^Nx_i'x_i\bigg)^{-1}\cdot\bigg(N^{-\frac{1}{2}}\sum_{i=1}^Nx_i'\varepsilon_i\bigg)$$`
+
+--
+
+As `\(N\to\infty\)`, by some theorems &amp; assumptions, .right[.rmk[.bb[?] name them all and point out where they are used]] 
+
+`$$\sqrt{N}(\hat\beta^{OLS}-\beta) \rightarrow \mathcal{N}\big(\mathbb{O}_{k+1},V_\beta\big)$$`
+
+--
+
+.bb[?] Why is this result important?
+
+.bb[?] How do we know what's `\(V_\beta\)`? Find it for *i.i.d.* `\(\varepsilon\)`s.
+
+---
+class: hands, animated, fadeIn
+
+&lt;/br&gt;
+
+#Can we apply these results to the TS case?
+###Yes / Maybe / No
+
+--
+
+&lt;/br&gt;
+
+##In what case these results are valid for TS?
+
+---
+class: section, animated, fadeIn
+
+#Some Probability Theorems
+##for Stationary &amp; Ergodic Time Series
+
+---
+class: center, animated, fadeIn
+
+### Another important TS concept
+
+#Ergodicity
+
+###Time Series `\(X_t\)` is **ergodic** if `\(\forall t\)` the dependence between `\(X_t\)` &amp; `\(X_{t-j}\)` &lt;/br&gt; "decays" for higher `\(j\)` `\(\;\)` &amp; `\(\;\)` "vanishes" as `\(j\to\infty\)`
+
+--
+
+&lt;/br&gt;
+
+.rb[!] Unlike stationarity, **ergodicity** can't be verifed from data.&lt;/br&gt;We can only assume it *essentially*.
+
+--
+
+&lt;/br&gt;
+
+.gb[*e.g.*] Discuss, are stationary transformed economic TS ergodic? Give examples.
+
+---
+class: center, animated, fadeIn
+
+#Ergodic Theorem
+
+For a weakly S&amp;E TS `\(\{X_t\}_{t=-\infty}^{\infty}\)`, with `\(\mathbb{E}|X_t|&lt;\infty\)`, as `\(T\to\infty\)`
+
+`$$T^{-1}\sum_{t=1}^T X_t \xrightarrow{p} \mathbb{E}X_t.$$`
+
+--
+
+&lt;/br&gt;
+
+.left[
+
+.bb[?] What is this theorem TS-analog for?
+
+]
+
+--
+
+.left[
+
+.bb[?] What's the probability limit of `\(T^{-1}\sum_{t=1}^Tx_t'x_t\)`?
+
+]
+
+---
+class: center, animated, fadeIn
+
+#CLT for General Dependent Observations
+
+For a weakly S&amp;E TS `\(\{X_t\}_{t=-\infty}^{\infty}\)`, with 
+
+`$$LRV_X=\sum_{j=-\infty}^{+\infty}\text{cov}(X_{t},X_{t-j})&lt;\infty,$$`
+as `\(T\to\infty\)`
+
+`$$\sqrt{T}\bigg(T^{-1}\sum_{t=1}^TX_t-\mathbb{E}X_t\bigg)\xrightarrow{d}\mathcal{N}\big(\mathbb{O};LRV_X\big),$$`
+and `\(LRV_X\)` is called the **long-run variance** of `\(X_t\)`.
+
+---
+class: animated, fadeIn
+
+#Estimation of LRV
+
+- There are many versions of a S&amp;E TS LRV Estimates
+
+- They differently handle the infinite summation of covariances
+
+--
+
+##Newey-West LRV Estimator
+
+`$$\widehat{LRV}_X^{NW}=\sum_{j=-m}^{m}\bigg(1-\frac{|j|}{m+1}\bigg)\cdot\hat\gamma_j,\;m=\big\lfloor4(T/100)^{1/3}\big\rfloor,$$`
+
+and `\(\hat\gamma_j\)`s are sample autocovariances of `\(X\)`.
+
+--
+
+.rb[!] It works for vector TS as well (LRV &amp; `\(\gamma\)`s are matrices then).
+
+---
+class: section, animated, fadeIn
+
+#Multivariate Linear Regression 
+##for Stationary &amp; Ergodic Time Series
+
+---
+class: animated, fadeIn
+
+#MLR: extension for S&amp;E TS
+
+###.center[The notation and interpretation are almost the same]
+
+`$$y_t=\beta_o+\beta_1x_{1t}+...+\beta_kx_{tk}+\varepsilon_t,\;\text{or}\;Y=X\beta+\varepsilon.$$`
+--
+
+##The .RUred[assumptions] are different
+
+.rb[tsA1] **Stationary TS sampling**: `\(\{y_t,x_t,\varepsilon_t\}\)` are weakly S&amp;E TS.
+
+.rb[tsA2] **Exogenous error**: `\(\mathbb{E}[\varepsilon_t|X_t]=0\)`.
+
+--
+
+.rb[!] We don't require the error term to be WWN.
+.right[.rmk[.bb[?] why is this imoprtant?]]
+
+---
+class: animated, fadeIn
+
+#MLR for S&amp;E TS: OLSE &amp; properties (I)
+
+###OLS works exactly the same
+
+`$$\hat\beta^{OLS}=(X'X)^{-1}X'Y,\;\text{and}\;\hat\beta^{OLS}-\beta=(X'X)^{-1}X'\varepsilon.$$`
+
+--
+
+###Propertires are almost the same, too
+
+- By .rb[tsA1] &amp; .rb[tsA2]: `\(\mathbb{E}(\hat\beta^{OLS}-\beta)=0.\)`
+
+--
+
+- By **ergodic theorem** &amp; .rb[tsA1] &amp; .rb[tsA2], as `\(T\to\infty\)`
+
+`$$\hat\beta^{OLS}-\beta\xrightarrow{p}0.$$`
+
+.right[.rmk[**HW**: check those, use the same tricks as before]]
+
+---
+class: animated, fadeIn
+
+#MLR for S&amp;E TS: OLSE &amp; properties (II)
+
+##Asymptotic distribution is substantially different
+
+`$$\sqrt{T}(\hat\beta^{OLS}-\beta)\xrightarrow{d}\mathcal{N}(\mathbb{O}_{k+1},V_\beta),$$`
+
+but `\(V_\beta\)` contains *LRV* of `\(x_t'\varepsilon_t\)`. .rmk[*Newey-West estimation is required*]
+
+--
+
+##NW-HAC Estimator of `\(V_\beta\)`
+
+`$$\hat V_\beta=\bigg(T^{-1}\sum_{t=1}^Tx_t'x_t\bigg)^{-1}  \Bigg[\sum_{j=-m}^m\bigg(1-\frac{|j|}{m}\bigg)\hat\Gamma_j^{x'e}\Bigg]  \bigg(T^{-1}\sum_{t=1}^Tx_t'x_t\bigg)^{-1}$$`
+
+---
+class: animated, fadeIn
+
+#Wrap-up
+
+- Multivariateness is as important in TS context as outside of it
+
+--
+
+- MLR for S&amp;E TS works *almost* the same way as for RS
+
+- OLSE are calculated the same and are unbiased and consistent
+
+--
+
+- We .cross[don't] **must not** require that `\(\varepsilon_t\sim WWN\)`
+
+--
+
+- Hence, we use CLT for dependent observations
+
+- And apply LRV estimator for asymptotic variance of OLSE
+
+--
+
+- Newey-West Heteroskedasticity &amp; Autocorrelation Correction&lt;/br&gt;is required for concisitent S.E.s in the regression
+---
+class: center, middle, animated, rubberBand
+
+#Thank you!
+
+### See you next time
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"highlightLines": true,
+"ratio": "8:5"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
