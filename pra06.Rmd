@@ -1,8 +1,8 @@
 ---
-title: "Time Series Econometrics, Fall 2019"
-subtitle: "Practice Session 5"
+title: "Time Series Econometrics, Spring 2021"
+subtitle: "Practice Session 6"
 author: "Vladimir Pyrlik"
-date: "October 7-11, 2019"
+date: "March 6, 2021"
 output:
   xaringan::moon_reader:
     mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
@@ -14,27 +14,6 @@ output:
       countIncrementalSlides: false
       highlightLines: true
       ratio: "8:5"
-
----
-class: section, animated, flipInY
-
-##Quiz 4.5
-
-#ARMA modeling & prediction
-
----
-class: center, animated, bounceIn
-
-</br></br>
-
-#Quiz 4.5
-
-###time remaining
-
-```{r echo=FALSE}
-countdown::countdown(minutes = 8, seconds = 00,
-                     left=0, right=0, padding='20px', margin='10%', font_size = '5em')
-```
 
 ---
 class: section, animated, fadeIn

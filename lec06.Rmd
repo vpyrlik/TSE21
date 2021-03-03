@@ -1,0 +1,282 @@
+---
+title: "Time Series Econometrics, Fall 2019"
+subtitle: "Lecture 6. MLR for S&ETS: an Empirical Example"
+author: "Vladimir Pyrlik"
+date: "October 18, 2019"
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    lib_dir: libs
+    css: [libs/main.css, libs/fonts.css, libs/animate.css]
+    chakra: libs/remark-latest.min.js
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      highlightLines: true
+      ratio: "8:5"
+---
+class: animated, fadeIn
+
+#Quick recall
+
+- Multivariateness is as important in TS context as outside of it
+
+- MLR for S&E TS works *almost* the same way as for RS
+
+- Properties of the coefficients estimates allow us to test stuff 
+
+- NW-HAC is used for concisitent estimation of $\hat V_\beta$
+
+---
+class: section, animated, fadeIn
+
+###An empirical example
+
+</br>
+
+#Contribution of housing starts</br>to short-run GDP growth: the case of Canada
+
+</br>
+
+---
+class: animated, fadeIn
+
+# The setup
+
+##The question
+
+More houses are constructed in the country all the time.
+
+Do more started constructions effect the GDP in short term?
+
+--
+
+</br>
+
+.bb[?] Why short-term?
+
+--
+
+.bb[?] Should we expect an effect? What kind of effect?
+
+---
+class: animated, fadeIn
+
+# The setup
+
+##The data
+
+- GDP growth (in log-diffs of current GDP)
+
+- Housing starts (first diffs, millions)
+
+- in Canada
+
+- in 1992 - 2011, quarterly, 80 observations.
+
+--
+
+</br>
+
+.bb[?] Does the data seem to satisfy our assumptions?
+
+---
+class: animated, fadeIn
+
+# The setup
+
+##Modeling technique
+
+- Consider several specifications of how housing starts effect on GDP growth is distributed over time
+
+- *Evaluate the effect based on different $V_\beta$ estiamtes*
+
+- Interpret the results
+
+---
+class: animated, fadeIn
+
+###Specification I
+#Static model
+
+$$GDPgr_t=\beta_o+\beta_1HS_t+\varepsilon_t.$$
+
+--
+
+.bb[?] Why *"static"*?
+
+--
+
+.bb[?] What our assumptions should be?
+
+--
+
+.right[.rmk[.bb[?] why don't we require WWN error or independence between the error and *HS*?]]
+
+--
+
+.bb[?] Are all of them reasonable in this setup?
+
+--
+
+.right[.rmk[*let's estimate it anyway*]]
+
+---
+class: animated, fadeIn
+
+###Static model: Estimates
+
+.center[###**non-robust & non-HAC s.e.**]
+
+|control | coeff|s.e.|
+|:----------|--------:|---------
+|Constant | 0.0066| 0.0007\*\*\*
+|*HS* | 0.0109| 0.0593|
+
+--
+
+.right[.rmk[.bb[?]What's wrong here?]]
+
+--
+
+.center[###**NW-HAC s.e.**]
+
+|control | coeff|s.e.|
+|:----------|--------:|---------
+|Constant | 0.0066| 0.0014\*\*\*
+|*HS* | 0.0109| 0.0567
+
+--
+
+.right[.rmk[.bb[?]Now what's wrong?]]
+
+---
+class: animated, fadeIn
+
+###Specification II
+#Distributed Lag Model
+
+$$GDPgr_t=\beta_o+\beta_1HS_{t-1}+...+\beta_4HS_{t-4}+\varepsilon_t.$$
+
+--
+
+.bb[?] How should we estimate the model and $V_\beta$?
+
+--
+
+.bb[?] How should we test the significance of *HS* effect now?
+.right[.rmk[.bb[?]construct the actual test in this case]]
+
+---
+class: animated, fadeIn
+
+###DLM: Estimates
+
+**parameters estimates**
+
+|control | coeff   | s.e.     | NW-HAC s.e.
+|:-------|--------:|:---------|:-----------
+|Constant| 0.0065  | 0.0007\*\*\*   | 0.0012\*\*\*     
+|*HS(-1)*| -0.2977 | 0.1149\*\*\*   | 0.1687\*     
+|*HS(-2)*| -0.2599 | 0.0944\*\*\*   | 0.1383\*     
+|*HS(-3)*| -0.2206 | 0.0931\*\*   | 0.1357     
+|*HS(-4)*| -0.1749 | 0.1094   | 0.1664     
+
+--
+
+**testing the effect**: $H_o=\{\beta_1=...=\beta_4=0\}$
+
+|   | no HAC  | NW-HAC |
+|:-|-:|-:|
+|W-statistics|11.7630|15.5830|
+|P-value|0.0192|0.0036|
+
+--
+
+.right[.rmk[.bb[?] Why is there such a difference between the tests?]]
+
+---
+class: animated, fadeIn
+
+###Specification III
+#Autoregressive Distributed Lag Model
+
+$$GDPgr_t=\beta_o+\sum_{j=1}^4\alpha_jGDPgr_{t-j}+\sum_{i=1}^8\beta_iHS_{t-i}+\varepsilon_t.$$
+
+--
+
+.bb[?] How can we choose between DLM and AR-DLM?
+
+--
+
+.bb[?] Consider the cumulative effect of *HS*: $\sum_{i=1}^8\beta_i$.</br>Construct a test for its significance.
+
+---
+class: animated, fadeIn
+
+###AR-DLM: Estimates
+
+**parameters estimates**
+
+|control | coeff   | s.e.     | NW-HAC s.e.
+|:-------|--------:|:---------|:-----------
+|...| ...  | ...   | ...
+|*HS(-1)*| -0.0341 | 0.1233   | 0.1131     
+|*HS(-2)*| 0.0703  | 0.1229   | 0.1028     
+|*HS(-3)*| -0.0533 | 0.1266   | 0.1067     
+|*HS(-4)*| 0.1498  | 0.1098   | 0.0877\*     
+|*HS(-5)*| 0.0136  | 0.1331   | 0.0985     
+|*HS(-6)*| 0.0054  | 0.1225   | 0.1288     
+|*HS(-7)*| 0.1282  | 0.1177   | 0.0575\*\*     
+|*HS(-8)*| -0.0590 | 0.1364   | 0.0625     
+
+---
+class: animated, fadeIn
+
+###AR-DLM: Estimates
+
+**testing the effect**: $H_o=\{\beta_1=...=\beta_8=0\}$
+
+|   | no HAC  | NW-HAC |
+|:-|-:|-:|
+|W-statistics|12.2490|14.3350|
+|P-value|0.1404|0.0734|
+
+--
+
+**testing the cumulative effect**: $H_o=\{\beta_1+...+\beta_8=0\}$
+
+|   | no HAC  | NW-HAC |
+|:-|-:|-:|
+|W-statistics|0.2161|0.2826|
+|P-value|0.6420|0.5949|
+
+--
+
+.bb[?] Given $\sum_{i=1}^8\hat\beta_i=0.221$, can we test the one-sided hypothesis?
+
+---
+class: hands, animated, flipInY
+
+###.left[the very last]
+
+#.left[Wrap-up]
+
+.left[In MLR for S&ETS always use HAC :)]
+
+</br></br>
+
+#.right[The course is over! Thank you!]
+#.right[##Good luck on the exam!]
+
+---
+class: center, animated, bounceIn
+
+#Student Evaluations
+
+###Please evaluate the course!
+
+![](stuff/tse_qr.png)   ![](stuff/tse_se.jpg)
+
+.right[.tinyurl[https://tf.cerge-ei.cz/evaluation/?name=Pyrlik+Vladimir&semester=Fall+2019&course=Time+Series+Econometrics]]
+

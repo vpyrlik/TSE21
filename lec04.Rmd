@@ -1,0 +1,550 @@
+---
+title: "Time Series Econometrics, Spring 2021"
+subtitle: "Lecture 4. Predicting from Linear Models"
+author: "Vladimir Pyrlik"
+date: "March 5, 2021"
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    lib_dir: libs
+    css: [libs/main.css, libs/fonts.css, libs/animate.css]
+    chakra: libs/remark-latest.min.js
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      highlightLines: true
+      ratio: "8:5"
+---
+class: section, animated, rubberBand
+
+###Quick recall
+
+#Why do we need the ARMAs?
+
+---
+class: animated, fadeIn
+
+#Why do we need the ARMAs?
+
+###1. Wold's decomposition .rmk[aka] **linear representation theorem**
+
+###2. Box & Jenkins **modeling** approach
+
+--
+
+.center[
+
+##The **general idea** is that
+
+###A sample TS from a stationary process can be **modelled as ARMA(p,q)**</br>so that **the order isn't "too high"** & **the residuals "resemble" WWN**.
+
+]
+
+--
+
+</br>
+
+.center[
+
+.bb[?] What's next? $\;\;-\;\;$ Prediction .rb[!]
+
+]
+
+---
+class: section, animated, fadeIn
+
+###Before we use our models to predict we need
+
+#A General Prediction Setup
+
+---
+class: fvp, animated, fadeIn
+
+.rmk[src:] .url[https://crunchyreads.com/2018/08/08/forecast-and-prediction-are-not-inter-changeable/]
+
+---
+class: animated, fadeIn
+
+##.gb[Example 1] A simple forecasting exercise
+
+Imagine AR(1) process
+
+$$X_t=0.75+0.25X_{t-1}+\varepsilon_t,\;\text{and}\;\varepsilon_t\sim WWN(0.5).$$
+
+It is currently time period $t$, and $X_t=1.2$.
+
+--
+
+.bb[?] What is the *expected value* of $X_{t+1}$?
+
+--
+
+.bb[?] What is the *expected value* of $X_{t+1}$ **given** $X_t=1.2$?
+
+--
+
+.bb[?] What should *the forecast* of $X_{t+1}$ be?
+
+--
+
+.bb[?] How $\mathbb{E}X_{t+1}$ and $\mathbb{E}_tX_{t+1}$ are different as forecasts of $X_{t+1}$?
+.right[.rmk[*find the variances of the forecasts' errors*]]
+
+--
+
+.bb[?] Is there any other forecast that minimizes that variance?
+
+---
+class: animated, fadeIn
+
+##.gb[Example 1] *(continued)*
+
+The **MSE-optimal one-step ahead** forecast ${\hat X}_{t+1|t}(X_{t})$ is:
+
+1. **Unbiased**: zero expected forecast error $$\mathbb{E}[{\hat X}_{t+1|t}-X_{t+1}]=0.$$
+
+2. **Minimum variance** of the forecst error: $${\hat X}_{t+1|t}=\arg\min_{f(X_{t})}\mathbb{E}(f(X_t)-X_{t+1})^2.$$
+
+--
+
+.bb[?] HW: what's the MSE-optimal forecast of $X_{t+1}$ in .gb[Example 1]?
+
+.bb[?] HW: look up how this problem is solved in general.
+
+---
+class: center, animated, fadeIn
+
+#Optimal in .RUred[M]ean .RUred[S]qured .RUred[E]rror .RUred[sense] forecasts
+
+## The general result is
+
+
+### For a TS $X_t$ the .RUred[MSE-optimal] $\color{blue}h$ periods ahead forecast</br>given available at time point $t$ information is
+
+### $\hat X_{t+\color{blue}h|t}(\mathcal{I}_t)=\mathbb{E}_{t}X_{t+\color{blue}h}\equiv\mathbb{E}[X_{t+\color{blue}h}|\mathcal{I}_t]$
+
+--
+
+</br>
+
+.bb[?] What's in the $\mathcal{I}_t$?
+
+---
+class: animated, fadeIn
+
+#Forecasting: general notation
+
+Given a TS process $\{X_t\}_{t=-\infty}^{\infty}$ we say that ...
+
+... $\hat X_{t+h|t}=\mathbb{E}_tX_{t+h},\;(h=1,2,...)$ is the *h* periods ahead *dynamic forecast* of $X_{t+h}$ given the information up to the period $t$,
+
+--
+
+.right[.rmk[.rb[!] when *h*=1 we also call it the *static forecast*]]
+
+--
+
+... $fe_{t+h|t}=X_{t+h}-\hat X_{t+h|t}$ is the corresponding *forecast error*,
+
+--
+
+... some scalar function $L(fe,X)$ s.t. $L(0,X)=0$ & $L(fe,X)>0\;\forall fe\neq0$ is the *loss function*, and
+
+... $\mathbb EL(fe_{t+h|t},X_{t+1})$ is quality of the forecast in terms of $L$.
+
+--
+
+.gb[*e.g.*] $L(fe)=fe^2$ results in MSE sense of forecast quality.
+
+---
+class: section, animated, fadeIn
+
+#Forecasting from ARMA
+
+---
+class: animated, fadeIn
+
+##.gb[Example 2] More forecasting from AR(1)
+
+Consider a general *AR(1)* process 
+
+$$X_t=\mu+\phi X_{t-1}+\varepsilon_t,\;\varepsilon_t\sim WWN(\sigma).$$
+
+.bb[?] What's the 1 period ahead dynamic forecast?
+.right[.rmk[.bb[?] what's the static forecast?]]
+
+--
+
+.bb[?] What's the 2 periods ahead forecast?
+
+--
+
+.bb[?] What's the general *h* periods ahead forecast?
+
+--
+
+.bb[?] What happens with the forecast as $h\to\infty$?
+.right[.rmk[.bb[?] do you think it'll work like this for other ARs?]]
+
+--
+
+.bb[?] For all the forecasts above find the *error bands*.
+
+---
+class: animated, fadeIn
+
+##.gb[Example 3] Forecasting from AR(2)
+
+Consider a general *AR(2)* process
+
+$$X_t=\mu+\phi_1 X_{t-1}+\phi_2 X_{t-2}+\varepsilon_t,\;\varepsilon_t\sim WWN(\sigma).$$
+
+.bb[?] Derive 1, 2 & 3 periods ahead dynamic forecasts.
+
+--
+
+.bb[?] **HW**: What's the general *h* periods ahead forecast?
+
+--
+
+.bb[?] Will *mean reversion* work here?
+.right[.rmk[**HW**: look up the answer to the previous question and check!]]
+
+--
+
+.bb[?] **HW**: derive the error bands.
+
+--
+
+.bb[?] **HW**: Look up all this for general *ARMA(p,q)*
+
+---
+class: section, animated, fadeIn
+
+###Back to working with data:
+
+#Forecasting from ARMA models
+
+##Forecast Evaluation & Out-of-sample Diagnostics Schemes
+
+---
+class: animated, fadeIn
+#What we did so far
+
+##1. **Preliminary data analysis**
+### got the stationary TS for modeling
+
+--
+
+##2. **ARMA fitting and in-sample diagnostics**
+### got several alternative ARMA models for the data
+
+--
+
+#3. Next Step: **forecasting**
+
+---
+class: animated, fadeIn
+
+#Practical forecasting: the general scheme
+
+.rb[!] Best fit doesn't guarantee best predictions
+
+.rb[!] We need to observe the actual quality of the predictors
+
+--
+
+## A general approach to a TS forecasting:
+
+1. Partition the data into **fitting**, **validation** & **testing** samples
+
+--
+
+2. Use **fitting** sample **to fit** the models
+
+--
+
+3. Use **validation** sample **to diagnose** their predictive quality
+
+--
+
+4. Use **testing** sample **to test** their actual performance 
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### The data
+
+![](stuff/l4ex4.png)
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### The data: stationary transformation
+
+![](stuff/l4ex4-0.png)
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### The data: **partitioning**
+
+![](stuff/l4ex4-1.png)
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### The fit: remaining alternative models
+
+**WWN+const**: $$X_t=0.047+\varepsilon_t,\;\varepsilon_t\sim WWN(0.045)$$
+
+**AR(1)**: $$X_t=0.048-0.086X_{t-1}+\varepsilon_t,\;\varepsilon_t\sim WWN(0.044)$$
+
+**AR(2)**: $$X_t=0.05-0.091X_{t-1}-0.28X_{t-2}+\varepsilon_t,\;\varepsilon_t\sim WWN(0.032)$$
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### Constructing the dynamic forecasts:
+
+**the pre-prediction data**
+
+|date |  actual|WWN+const|   AR(1)|   AR(2)|
+|:----|-------:|--------:|-------:|-------:|
+|2007 | -0.0178|  -0.0178| -0.0178| -0.0178|
+|2008 |  0.1053|   0.1053|  0.1053|  0.1053|
+|2009 | -0.0743|         |        |        |
+|2010 |  0.0836|         |        |        |
+|2011 |  0.0749|         |        |        |
+|2012 |  0.0189|         |        |        |
+|2013 |  0.0071|         |        |        |
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### Constructing the dynamic forecasts:
+
+**adding predictions from WWN+const**
+
+|date |  actual|WWN+const|   AR(1)|   AR(2)|
+|:----|-------:|--------:|-------:|-------:|
+|2007 | -0.0178|  -0.0178| -0.0178| -0.0178|
+|2008 |  0.1053|   0.1053|  0.1053|  0.1053|
+|2009 | -0.0743|   0.0470|        |        |
+|2010 |  0.0836|   0.0470|        |        |
+|2011 |  0.0749|   0.0470|        |        |
+|2012 |  0.0189|   0.0470|        |        |
+|2013 |  0.0071|   0.0470|        |        |
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### Constructing the dynamic forecasts:
+
+**adding predictions from AR(1)**
+
+|date |  actual|WWN+const|   AR(1)|   AR(2)|
+|:----|-------:|--------:|-------:|-------:|
+|2007 | -0.0178|  -0.0178| -0.0178| -0.0178|
+|2008 |  0.1053|   0.1053|  0.1053|  0.1053|
+|2009 | -0.0743|   0.0470|  0.0396|        |
+|2010 |  0.0836|   0.0470|  0.0448|        |
+|2011 |  0.0749|   0.0470|  0.0444|        |
+|2012 |  0.0189|   0.0470|  0.0444|        |
+|2013 |  0.0071|   0.0470|  0.0444|        |
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### Constructing the dynamic forecasts:
+
+**adding predictions from AR(2)**
+
+|date |  actual|WWN+const|   AR(1)|   AR(2)|
+|:----|-------:|--------:|-------:|-------:|
+|2007 | -0.0178|  -0.0178| -0.0178| -0.0178|
+|2008 |  0.1053|   0.1053|  0.1053|  0.1053|
+|2009 | -0.0743|   0.0470|  0.0396|  0.0454|
+|2010 |  0.0836|   0.0470|  0.0448|  0.0163|
+|2011 |  0.0749|   0.0470|  0.0444|  0.0358|
+|2012 |  0.0189|   0.0470|  0.0444|  0.0421|
+|2013 |  0.0071|   0.0470|  0.0444|  0.0361|
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### Validating the predictors:
+
+**Calculating forecast errors**
+
+|date       |  WWN+const|      AR(1)|      AR(2)|
+|:----------|----------:|----------:|----------:|
+|2009 | -0.1213| -0.1139| -0.1197|
+|2010 |  0.0366|  0.0388|  0.0673|
+|2011 |  0.0279|  0.0304|  0.0391|
+|2012 | -0.0280| -0.0254| -0.0231|
+|2013 | -0.0398| -0.0373| -0.0290|
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### Validating the predictors:
+
+**calculating MSE**
+
+|date       |  WWN+const|      AR(1)|      AR(2)|
+|:----------|----------:|----------:|----------:|
+|2009 | -0.1213| -0.1139| -0.1197|
+|2010 |  0.0366|  0.0388|  0.0673|
+|2011 |  0.0279|  0.0304|  0.0391|
+|2012 | -0.0280| -0.0254| -0.0231|
+|2013 | -0.0398| -0.0373| -0.0290|
+|**MSE**|**0.0038**|**0.0035**|**0.0044**|
+
+$$MSE^{MODEL} = 5^{-1}\sum_{t=2009}^{2013}(fe^{\text{MODEL}}_t)^2$$
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### Validating the predictors:
+
+**choosing the best predictor**
+
+|date       |  WWN+const|      .RUred[AR(1)]|      AR(2)|
+|:----------|----------:|----------:|----------:|
+|2009 | -0.1213| -0.1139| -0.1197|
+|2010 |  0.0366|  0.0388|  0.0673|
+|2011 |  0.0279|  0.0304|  0.0391|
+|2012 | -0.0280| -0.0254| -0.0231|
+|2013 | -0.0398| -0.0373| -0.0290|
+|**MSE**|**0.0038**|**.RUred[0.0035]**|**0.0044**|
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### Testing the predictor:
+
+**the pre-testing data**
+
+|data       |    actual|     AR(1)|
+|:----------|---------:|---------:|
+|2012 | 0.0189| 0.0189|
+|2013 | 0.0071| 0.0071|
+|2014 | 0.0388|       |
+|2015 | 0.0045|       |
+|2016 | 0.0044|       |
+|2017 | 0.0516|       |
+|2018 | 0.0452|       |
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### Testing the predictor:
+
+**adding predictions from AR(1)**
+
+|data       |    actual|     AR(1)|
+|:----------|---------:|---------:|
+|2012 | 0.0189| 0.0189|
+|2013 | 0.0071| 0.0071|
+|2014 | 0.0388| 0.0474      |
+|2015 | 0.0045| 0.0439      |
+|2016 | 0.0044| 0.0442      |
+|2017 | 0.0516| 0.0442      |
+|2018 | 0.0452| 0.0442      |
+
+---
+class: center, animated, fadeIn
+
+##.gb[Example 4] A simple empirical illustration
+
+### Testing the predictor:
+
+![](stuff/ex4-2.png) **MSE = 0.00065**
+
+---
+class: animated, fadeIn
+
+.center[
+
+##.gb[Example 4] A simple empirical illustration
+
+]
+
+###Wrap-up: what we did here
+
+--
+
+1. **Threw away some data** that seemed too old
+
+--
+
+2. Left a **decade** for **validation** and **testing**
+
+--
+
+3. **Fitted** several models and **left three** best ones
+
+--
+
+4. Calculated validation **dynamic forecasts**
+
+--
+
+5. Compared them via **MSE** & chose the **best one**
+
+--
+
+6. Evaluated it on testing sample via **MSE**
+
+--
+
+###.bb[?] What would you change in this example?
+
+---
+class: animated, fadeIn
+
+#Next steps
+
+##Alternating the basic scheme
+
+- using static forecasts
+
+- fixed, recursive & rolling forecasting
+
+- alternative loss functions
+
+- handling mulitple good predictors
+
+---
+class: center, middle, animated, rubberBand
+
+#Thank you!
+
+### See you next time

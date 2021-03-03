@@ -451,4 +451,13 @@ midd-blockquote {
     font-size: 36px;
 }
 
+.fvp {
+    background-color: #f7ea68;
+    background-image: url('fvp.png');
+    background-position: 50% 50%;
+    background-size: 75%;
+    font-size: 12px;
+    vertical-align: bottom;
+}
+
 }

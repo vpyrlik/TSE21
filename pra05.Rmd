@@ -1,5 +1,5 @@
 ---
-title: "Time Series Econometrics, Fall 2019"
+title: "Time Series Econometrics, Spring 2021"
 subtitle: "Practice Session 5"
 author: "Vladimir Pyrlik"
 date: "February 27, 2019"
