@@ -5,8 +5,6 @@
     <meta charset="utf-8" />
     <meta name="author" content="Vladimir Pyrlik" />
     <meta name="date" content="2021-03-06" />
-    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
-    <script src="libs/countdown-0.3.5/countdown.js"></script>
     <link rel="stylesheet" href="libs/main.css" type="text/css" />
     <link rel="stylesheet" href="libs/fonts.css" type="text/css" />
     <link rel="stylesheet" href="libs/animate.css" type="text/css" />
@@ -22,29 +20,6 @@ class: center, middle, inverse, title-slide
 
 ---
 
-class: section, animated, flipInY
-
-##Quiz 4.5
-
-#ARMA modeling &amp; prediction
-
----
-class: center, animated, bounceIn
-
-&lt;/br&gt;&lt;/br&gt;
-
-#Quiz 4.5
-
-###time remaining
-
-
-```{=html}
-&lt;div class="countdown" id="timer_603f8915" style="right:0;bottom:0;left:0;margin:10%;padding:20px;font-size:5em;" data-warnwhen="0"&gt;
-&lt;code class="countdown-time"&gt;&lt;span class="countdown-digits minutes"&gt;08&lt;/span&gt;&lt;span class="countdown-digits colon"&gt;:&lt;/span&gt;&lt;span class="countdown-digits seconds"&gt;00&lt;/span&gt;&lt;/code&gt;
-&lt;/div&gt;
-```
-
----
 class: section, animated, fadeIn
 
 ###The Main Steps of
@@ -169,6 +144,22 @@ Imagine, also *more than one* of them delivers appropriate forecasts.
 
 .bb[?] How can we deal with this?
 
+---
+class: animated, fadeIn
+
+##Forecasting from AR(2), based on .gb[Example 3] from the lecture
+
+Consider a general *AR(2)* process
+
+`$$X_t=\mu+\phi_1 X_{t-1}+\phi_2 X_{t-2}+\varepsilon_t,\;\varepsilon_t\sim WWN(\sigma).$$`
+
+.bb[?] Derive 1, 2 &amp; 3 periods ahead dynamic forecasts.
+
+.bb[?] What's the general *h* periods ahead forecast?
+
+.bb[?] Will *mean reversion* work here?
+
+.bb[?] derive the error bands.
 
 ---
 class: center, middle, animated, rubberBand

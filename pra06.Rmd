@@ -140,6 +140,22 @@ Imagine, also *more than one* of them delivers appropriate forecasts.
 
 .bb[?] How can we deal with this?
 
+---
+class: animated, fadeIn
+
+##Forecasting from AR(2), based on .gb[Example 3] from the lecture
+
+Consider a general *AR(2)* process
+
+$$X_t=\mu+\phi_1 X_{t-1}+\phi_2 X_{t-2}+\varepsilon_t,\;\varepsilon_t\sim WWN(\sigma).$$
+
+.bb[?] Derive 1, 2 & 3 periods ahead dynamic forecasts.
+
+.bb[?] What's the general *h* periods ahead forecast?
+
+.bb[?] Will *mean reversion* work here?
+
+.bb[?] Derive the error bands for the forecast.
 
 ---
 class: center, middle, animated, rubberBand
