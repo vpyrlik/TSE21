@@ -2,7 +2,7 @@
 title: "Time Series Econometrics, Spring 2021"
 subtitle: "Lecture 5. Multivariate Linear Regression for</br>Stationary & Ergodic Time Series"
 author: "Vladimir Pyrlik"
-date: "Marrch 12, 2021"
+date: "March 12, 2021"
 output:
   xaringan::moon_reader:
     mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
@@ -36,7 +36,7 @@ class: tps, animated, zoomIn
 
 #Multivariate Linear Regression
 
-##Take a minute to think</br>& discuss with 1-2 people around you
+##Take a minute to think
 
 #Why do we need .RUred[Multivariateness]?
 
